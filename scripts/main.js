@@ -68,9 +68,46 @@
 
   setActiveNavLink();
 
+  function attachPressFeedback(node) {
+    let clearTimer = null;
+
+    function press() {
+      if (clearTimer) {
+        window.clearTimeout(clearTimer);
+        clearTimer = null;
+      }
+      node.classList.add("is-pressed");
+    }
+
+    function release() {
+      clearTimer = window.setTimeout(() => {
+        node.classList.remove("is-pressed");
+      }, 120);
+    }
+
+    node.addEventListener("pointerdown", press);
+    node.addEventListener("pointerup", release);
+    node.addEventListener("pointerleave", release);
+    node.addEventListener("pointercancel", release);
+    node.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        press();
+      }
+    });
+    node.addEventListener("keyup", release);
+  }
+
+  document.querySelectorAll(".btn, .nav a, .faq-trigger, .menu-toggle").forEach((node) => {
+    if (node instanceof HTMLElement) {
+      attachPressFeedback(node);
+    }
+  });
+
   const revealNodes = document.querySelectorAll(".reveal");
   const chartBars = document.querySelectorAll(".bar-fill[data-fill]");
   const countNodes = document.querySelectorAll("[data-count]");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const hasGsap = Boolean(window.gsap && window.ScrollTrigger);
 
   function animateCount(node) {
     const target = Number(node.getAttribute("data-count") || "0");
@@ -98,7 +135,65 @@
     node.classList.add("is-visible");
   }
 
-  if (!("IntersectionObserver" in window)) {
+  if (prefersReducedMotion) {
+    revealNodes.forEach(revealNow);
+    chartBars.forEach((bar) => {
+      bar.style.setProperty("--fill", bar.getAttribute("data-fill") || "0");
+    });
+    countNodes.forEach(animateCount);
+  } else if (hasGsap) {
+    window.gsap.registerPlugin(window.ScrollTrigger);
+
+    revealNodes.forEach((node) => {
+      let delay = 0;
+      if (node.classList.contains("reveal-delay-1")) {
+        delay = 0.12;
+      } else if (node.classList.contains("reveal-delay-2")) {
+        delay = 0.2;
+      } else if (node.classList.contains("reveal-delay-3")) {
+        delay = 0.28;
+      }
+
+      window.gsap.fromTo(
+        node,
+        { autoAlpha: 0, y: 30, scale: 0.986 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          delay,
+          duration: 0.95,
+          ease: "power3.out",
+          onStart: () => revealNow(node),
+          scrollTrigger: {
+            trigger: node,
+            start: "top 88%",
+            once: true
+          }
+        }
+      );
+    });
+
+    chartBars.forEach((bar) => {
+      window.ScrollTrigger.create({
+        trigger: bar,
+        start: "top 92%",
+        once: true,
+        onEnter: () => {
+          bar.style.setProperty("--fill", bar.getAttribute("data-fill") || "0");
+        }
+      });
+    });
+
+    countNodes.forEach((node) => {
+      window.ScrollTrigger.create({
+        trigger: node,
+        start: "top 92%",
+        once: true,
+        onEnter: () => animateCount(node)
+      });
+    });
+  } else if (!("IntersectionObserver" in window)) {
     revealNodes.forEach(revealNow);
     chartBars.forEach((bar) => {
       bar.style.setProperty("--fill", bar.getAttribute("data-fill") || "0");

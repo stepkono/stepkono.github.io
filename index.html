@@ -17,6 +17,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
     <script defer src="scripts/main.js"></script>
     <script type="application/ld+json">
       {
@@ -57,7 +59,6 @@
         </button>
 
         <nav class="nav" aria-label="Hauptnavigation">
-          <a href="index.html">Start</a>
           <a href="service.html">Wie es funktioniert</a>
           <a href="bedingungen.html">Bedingungen</a>
           <a href="ueber-mich.html">Über mich</a>
@@ -68,7 +69,7 @@
     </header>
 
     <main id="main-content">
-      <section class="section section--hero">
+      <section class="section section--hero section--hero-home">
         <div class="container hero">
           <div class="reveal">
             <span class="eyebrow">Kostenfrei für Lübeck</span>
@@ -77,24 +78,6 @@
             <div class="btn-row">
               <a class="btn btn--primary" href="kontakt.html">Jetzt bewerben</a>
               <a class="btn btn--secondary" href="service.html">So funktioniert&apos;s</a>
-            </div>
-            <div class="kicker-grid">
-              <article class="kicker reveal reveal-delay-1">
-                <strong>0 €</strong>
-                <p class="small mt-0">Euro für die Erstellung deiner neuen Website</p>
-              </article>
-              <article class="kicker reveal reveal-delay-2">
-                <strong>Lokal</strong>
-                <p class="small mt-0">Exklusiv für Unternehmen in Lübeck</p>
-              </article>
-              <article class="kicker reveal reveal-delay-3">
-                <strong>Klar</strong>
-                <p class="small mt-0">Nutzerfreundliche Struktur, mobile-first</p>
-              </article>
-              <article class="kicker reveal reveal-delay-3">
-                <strong>Menschlich</strong>
-                <p class="small mt-0">Persönliche Zusammenarbeit statt Massenlösung</p>
-              </article>
             </div>
           </div>
 
@@ -158,25 +141,13 @@
                   <div class="stat-label"><span>Besuchen danach die Business-Website</span><span>54%</span></div>
                   <div class="bar-track"><div class="bar-fill" data-fill="54"></div></div>
                 </div>
-                <div class="stat-item">
-                  <div class="stat-label"><span>Kleine EU-Unternehmen mit Website</span><span>81%</span></div>
-                  <div class="bar-track"><div class="bar-fill" data-fill="81"></div></div>
-                </div>
-                <div class="stat-item">
-                  <div class="stat-label"><span>KMU in Deutschland mit Online-Umsatz</span><span>22%</span></div>
-                  <div class="bar-track"><div class="bar-fill" data-fill="22"></div></div>
-                </div>
               </div>
               <p class="stat-note"><strong>Interpretation:</strong> Wenn von 1.000 lokal interessierten Personen rund 540 auf eine Website klicken möchten, ist eine fehlende oder unklare Website ein direkter Kontaktverlust.</p>
+              <ul class="sources sources--inline small">
+                <li><a href="https://www.brightlocal.com/research/local-consumer-review-survey/" target="_blank" rel="noopener noreferrer">BrightLocal – Local Consumer Review Survey 2026</a> (98% und 54%).</li>
+              </ul>
             </div>
           </div>
-
-          <h3 class="reveal" style="margin-top:2rem;">Quellen</h3>
-          <ol class="sources reveal reveal-delay-1">
-            <li><a href="https://www.brightlocal.com/research/local-consumer-review-survey/" target="_blank" rel="noopener noreferrer">BrightLocal – Local Consumer Review Survey 2026</a> (u. a. 98% Online-Suche nach lokalen Unternehmen, 54% Website-Besuche nach positiven Reviews).</li>
-            <li><a href="https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20241213-2" target="_blank" rel="noopener noreferrer">Eurostat News (13.12.2024)</a> – 81% kleine Unternehmen in der EU mit eigener Website.</li>
-            <li><a href="https://www.kfw.de/KfW-Konzern/Newsroom/Aktuelles/Pressemitteilungen-Details_818752.html" target="_blank" rel="noopener noreferrer">KfW-Pressemitteilung (18.09.2024)</a> – 22% der kleinen und mittleren Unternehmen in Deutschland erzielen Online-Umsätze.</li>
-          </ol>
         </div>
       </section>
 
