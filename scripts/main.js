@@ -68,6 +68,140 @@
 
   setActiveNavLink();
 
+  function initHeaderGlow() {
+    if (!header || !nav) {
+      return;
+    }
+
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!canHover) {
+      return;
+    }
+
+    const links = Array.from(nav.querySelectorAll("a"));
+    if (!links.length) {
+      return;
+    }
+
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let targetTabX = 0;
+    let targetTabY = 0;
+    let currentTabX = 0;
+    let currentTabY = 0;
+    let targetGlowOpacity = 0;
+    let currentGlowOpacity = 0;
+    let targetTabOpacity = 0;
+    let currentTabOpacity = 0;
+    let currentWobbleX = 0;
+    let currentWobbleY = 0;
+    let currentMorphSize = 0;
+    let currentFlowPulse = 0.5;
+
+    function refreshCenter() {
+      const rect = header.getBoundingClientRect();
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      targetX = centerX;
+      targetY = centerY;
+      currentX = centerX;
+      currentY = centerY;
+      targetTabX = centerX;
+      targetTabY = centerY;
+      currentTabX = centerX;
+      currentTabY = centerY;
+    }
+
+    function setCursorTarget(clientX, clientY) {
+      const rect = header.getBoundingClientRect();
+      targetX = clientX - rect.left;
+      targetY = clientY - rect.top;
+      targetGlowOpacity = 1;
+    }
+
+    function setTabTarget(link) {
+      const headerRect = header.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
+      targetTabX = linkRect.left - headerRect.left + linkRect.width / 2;
+      targetTabY = linkRect.top - headerRect.top + linkRect.height / 2;
+      targetTabOpacity = 1;
+    }
+
+    function lerp(from, to, amount) {
+      return from + (to - from) * amount;
+    }
+
+    refreshCenter();
+
+    header.addEventListener("pointerenter", (event) => {
+      setCursorTarget(event.clientX, event.clientY);
+    });
+
+    header.addEventListener("pointermove", (event) => {
+      setCursorTarget(event.clientX, event.clientY);
+    });
+
+    header.addEventListener("pointerleave", () => {
+      targetGlowOpacity = 0;
+      targetTabOpacity = 0;
+    });
+
+    links.forEach((link) => {
+      link.addEventListener("pointerenter", () => {
+        setTabTarget(link);
+      });
+
+      link.addEventListener("pointermove", (event) => {
+        setCursorTarget(event.clientX, event.clientY);
+        setTabTarget(link);
+      });
+
+      link.addEventListener("pointerleave", () => {
+        targetTabOpacity = 0;
+      });
+    });
+
+    window.addEventListener("resize", refreshCenter);
+
+    function animateGlow() {
+      const time = performance.now() * 0.001;
+      const wobbleTargetX = Math.sin(time * 1.7) * 7 + Math.sin(time * 0.86) * 3.2;
+      const wobbleTargetY = Math.cos(time * 1.45) * 6 + Math.cos(time * 0.7) * 2.6;
+      const morphTarget = Math.sin(time * 1.95) * 11 + Math.cos(time * 1.1) * 4;
+      const pulseTarget = (Math.sin(time * 1.8) + 1) * 0.5;
+
+      currentX = lerp(currentX, targetX, 0.14);
+      currentY = lerp(currentY, targetY, 0.14);
+      currentTabX = lerp(currentTabX, targetTabX, 0.16);
+      currentTabY = lerp(currentTabY, targetTabY, 0.16);
+      currentGlowOpacity = lerp(currentGlowOpacity, targetGlowOpacity, 0.075);
+      currentTabOpacity = lerp(currentTabOpacity, targetTabOpacity, 0.09);
+      currentWobbleX = lerp(currentWobbleX, wobbleTargetX, 0.08);
+      currentWobbleY = lerp(currentWobbleY, wobbleTargetY, 0.08);
+      currentMorphSize = lerp(currentMorphSize, morphTarget, 0.065);
+      currentFlowPulse = lerp(currentFlowPulse, pulseTarget, 0.05);
+
+      header.style.setProperty("--cursor-x", `${currentX.toFixed(2)}px`);
+      header.style.setProperty("--cursor-y", `${currentY.toFixed(2)}px`);
+      header.style.setProperty("--tab-x", `${currentTabX.toFixed(2)}px`);
+      header.style.setProperty("--tab-y", `${currentTabY.toFixed(2)}px`);
+      header.style.setProperty("--glow-opacity", currentGlowOpacity.toFixed(3));
+      header.style.setProperty("--tab-opacity", currentTabOpacity.toFixed(3));
+      header.style.setProperty("--wobble-x", `${currentWobbleX.toFixed(2)}px`);
+      header.style.setProperty("--wobble-y", `${currentWobbleY.toFixed(2)}px`);
+      header.style.setProperty("--morph-size", `${currentMorphSize.toFixed(2)}px`);
+      header.style.setProperty("--flow-pulse", currentFlowPulse.toFixed(3));
+
+      window.requestAnimationFrame(animateGlow);
+    }
+
+    window.requestAnimationFrame(animateGlow);
+  }
+
+  initHeaderGlow();
+
   function attachPressFeedback(node) {
     let clearTimer = null;
 
