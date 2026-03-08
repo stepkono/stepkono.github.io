@@ -25,10 +25,26 @@
   window.addEventListener("scroll", updateHeaderState, { passive: true });
 
   if (menuButton && header && nav) {
+    const root = document.documentElement;
+    let backdrop = document.querySelector(".mobile-nav-backdrop");
+
+    if (!(backdrop instanceof HTMLElement)) {
+      backdrop = document.createElement("div");
+      backdrop.className = "mobile-nav-backdrop";
+      backdrop.setAttribute("aria-hidden", "true");
+      document.body.appendChild(backdrop);
+    }
+
+    function setMenuState(isOpen) {
+      menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      header.setAttribute("data-menu-open", isOpen ? "true" : "false");
+      root.classList.toggle("menu-open", isOpen);
+      backdrop.classList.toggle("is-visible", isOpen);
+    }
+
     menuButton.addEventListener("click", () => {
       const expanded = menuButton.getAttribute("aria-expanded") === "true";
-      menuButton.setAttribute("aria-expanded", expanded ? "false" : "true");
-      header.setAttribute("data-menu-open", expanded ? "false" : "true");
+      setMenuState(!expanded);
     });
 
     document.addEventListener("click", (event) => {
@@ -37,15 +53,29 @@
         return;
       }
       if (!header.contains(target)) {
-        menuButton.setAttribute("aria-expanded", "false");
-        header.setAttribute("data-menu-open", "false");
+        setMenuState(false);
+      }
+    });
+
+    backdrop.addEventListener("click", () => {
+      setMenuState(false);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setMenuState(false);
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (!window.matchMedia("(max-width: 840px)").matches) {
+        setMenuState(false);
       }
     });
 
     nav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
-        menuButton.setAttribute("aria-expanded", "false");
-        header.setAttribute("data-menu-open", "false");
+        setMenuState(false);
       });
     });
   }
