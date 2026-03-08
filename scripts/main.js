@@ -52,15 +52,32 @@
 
   function setActiveNavLink() {
     const links = document.querySelectorAll(".nav a[href]");
-    const current = window.location.pathname.split("/").pop() || "index.html";
+    const current = window.location.pathname;
+
+    function normalizePath(pathname) {
+      let normalized = pathname;
+      if (!normalized || normalized === "/") {
+        return "/";
+      }
+      normalized = normalized.replace(/index\.html$/i, "");
+      normalized = normalized.replace(/\.html$/i, "/");
+      if (!normalized.endsWith("/")) {
+        normalized += "/";
+      }
+      return normalized;
+    }
+
+    const normalizedCurrent = normalizePath(current);
 
     links.forEach((link) => {
-      const href = link.getAttribute("href");
-      if (!href) {
+      if (!(link instanceof HTMLAnchorElement)) {
         return;
       }
-      const normalized = href === "./" ? "index.html" : href;
-      if (normalized === current) {
+
+      const linkPath = new URL(link.href, window.location.origin).pathname;
+      const normalizedLink = normalizePath(linkPath);
+
+      if (normalizedLink === normalizedCurrent) {
         link.classList.add("is-active");
       }
     });

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://stepankonoplianko.github.io/schaufenster_site/sitemap.xml
+Sitemap: https://schaufenster.design/sitemap.xml
