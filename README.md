@@ -9,7 +9,8 @@ Moderne, responsive Multi-Page-Website für den Service **Schaufenster**.
 - Über-mich-Seite
 - Kontaktseite mit strukturiertem Formular
 - FAQ-Seite
-- Rechtliches (Impressum/Datenschutz als auszufüllende Vorlage)
+- Impressum-Seite
+- Datenschutz-Seite
 
 ## Projektstruktur
 
@@ -21,7 +22,8 @@ Moderne, responsive Multi-Page-Website für den Service **Schaufenster**.
 ├── ueber-mich.html
 ├── kontakt.html
 ├── faq.html
-├── rechtliches.html
+├── impressum.html
+├── datenschutz.html
 ├── 404.html
 ├── robots.txt
 ├── sitemap.xml
@@ -80,7 +82,8 @@ Wenn dein finaler Domain-Name nicht `https://stepankonoplianko.github.io/schaufe
 
 ## Vor Live-Schaltung prüfen
 
-- Impressum und Datenschutz in `rechtliches.html` vervollständigen
+- Impressum in `impressum.html` vervollständigen
+- Datenschutz in `datenschutz.html` vervollständigen
 - Formular-Endpunkt (`scripts/config.js`) setzen
 - Optional: eigene Domain verbinden
 - Finalen Text-Feinschliff und letzte Mobiltests durchführen

@@ -281,11 +281,11 @@
     revealNodes.forEach((node) => {
       let delay = 0;
       if (node.classList.contains("reveal-delay-1")) {
-        delay = 0.12;
+        delay = 0.08;
       } else if (node.classList.contains("reveal-delay-2")) {
-        delay = 0.2;
+        delay = 0.14;
       } else if (node.classList.contains("reveal-delay-3")) {
-        delay = 0.28;
+        delay = 0.2;
       }
 
       window.gsap.fromTo(
@@ -296,12 +296,12 @@
           y: 0,
           scale: 1,
           delay,
-          duration: 0.95,
+          duration: 0.6,
           ease: "power3.out",
           onStart: () => revealNow(node),
           scrollTrigger: {
             trigger: node,
-            start: "top 88%",
+            start: "top 90%",
             once: true
           }
         }

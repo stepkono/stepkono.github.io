@@ -9,12 +9,13 @@
   const statusNode = document.querySelector("#form-status");
   const linksWrap = document.querySelector("#social-links-wrap");
   const addLinkButton = document.querySelector("#add-social-link");
-  const previewNode = document.querySelector("#request-preview");
   const summaryField = document.querySelector("#request-summary");
+  const emailInput = form.querySelector("#email");
 
   const config = window.SCHAUFENSTER_CONFIG || {};
   const endpoint = typeof config.formEndpoint === "string" ? config.formEndpoint : "";
   const bootTime = Date.now();
+  const emailPattern = /^[A-Za-z0-9](?:[A-Za-z0-9._-]{0,62}[A-Za-z0-9])?@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
 
   function setStatus(text, state) {
     if (!statusNode) {
@@ -64,18 +65,33 @@
     return summaryLines.join("\n");
   }
 
-  function updatePreview() {
+  function syncSummary() {
     const summary = buildSummary();
-    if (previewNode) {
-      previewNode.textContent = summary;
-    }
     if (summaryField instanceof HTMLInputElement || summaryField instanceof HTMLTextAreaElement) {
       summaryField.value = summary;
     }
   }
 
-  form.addEventListener("input", updatePreview);
-  updatePreview();
+  function validateEmailField() {
+    if (!(emailInput instanceof HTMLInputElement)) {
+      return true;
+    }
+
+    const emailValue = emailInput.value.trim();
+    if (!emailValue) {
+      emailInput.setCustomValidity("");
+      return false;
+    }
+    const isValid = emailPattern.test(emailValue);
+    emailInput.setCustomValidity(isValid ? "" : "Bitte gib eine gültige E-Mail im Format name@domain.tld ein.");
+    return isValid;
+  }
+
+  form.addEventListener("input", () => {
+    syncSummary();
+    validateEmailField();
+  });
+  syncSummary();
 
   if (addLinkButton && linksWrap) {
     addLinkButton.addEventListener("click", () => {
@@ -107,7 +123,22 @@
     }
 
     if (Date.now() - bootTime < 3000) {
-      setStatus("Bitte nimm dir einen Moment Zeit und versuche es erneut.", "error");
+      setStatus("Bitte nehmen Sie sich einen Moment Zeit und versuchen Sie es erneut.", "error");
+      return;
+    }
+
+    if (!form.checkValidity()) {
+      setStatus("Bitte überprüfen Sie Ihre Eingaben.", "error");
+      form.reportValidity();
+      return;
+    }
+
+    if (!validateEmailField()) {
+      setStatus("Bitte gib eine gültige E-Mail-Adresse ein.", "error");
+      if (emailInput instanceof HTMLInputElement) {
+        emailInput.reportValidity();
+        emailInput.focus();
+      }
       return;
     }
 
@@ -116,7 +147,7 @@
       return;
     }
 
-    updatePreview();
+    syncSummary();
     setStatus("Sende Anfrage ...", "");
 
     const payload = new FormData(form);
@@ -136,8 +167,11 @@
       }
 
       form.reset();
-      updatePreview();
-      setStatus("Danke! Deine Anfrage wurde erfolgreich gesendet.", "ok");
+      if (emailInput instanceof HTMLInputElement) {
+        emailInput.setCustomValidity("");
+      }
+      syncSummary();
+      setStatus("Danke! Ihre Anfrage wurde erfolgreich gesendet.", "ok");
     } catch (error) {
       setStatus("Senden fehlgeschlagen. Bitte versuche es spaeter erneut oder schreibe direkt per E-Mail.", "error");
     }
