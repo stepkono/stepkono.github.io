@@ -3,23 +3,89 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Seite nicht gefunden | Schaufenster</title>
-    <meta name="description" content="Die angeforderte Seite wurde nicht gefunden.">
-    <meta name="theme-color" content="#fffaf4">
-    <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-colorful.svg">
-    <link rel="stylesheet" href="/styles/main.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
-    <script defer src="/scripts/main.js"></script>
+    <title>Schaufenster | Wartungsmodus</title>
+    <meta name="description" content="Die Website Schaufenster befindet sich aktuell im Wartungsmodus.">
+    <meta name="theme-color" content="#fbf6ef">
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #fbf6ef;
+        --surface: rgba(255, 255, 255, 0.78);
+        --border: rgba(116, 88, 62, 0.12);
+        --text: #231b16;
+        --muted: #6b5e53;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", "Segoe UI", Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(255, 181, 120, 0.26), transparent 28rem),
+          radial-gradient(circle at bottom left, rgba(83, 200, 175, 0.18), transparent 24rem),
+          var(--bg);
+        display: grid;
+        place-items: center;
+        padding: 1.5rem;
+      }
+
+      main {
+        width: min(100%, 42rem);
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        padding: clamp(2rem, 5vw, 3.25rem);
+        background: var(--surface);
+        backdrop-filter: blur(10px);
+        text-align: center;
+        box-shadow: 0 24px 60px rgba(29, 15, 4, 0.08);
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 1rem;
+        padding: 0.45rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.82);
+        color: #7a4a28;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2rem, 5vw, 3.35rem);
+        line-height: 1.08;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2.1vw, 1.12rem);
+        line-height: 1.7;
+      }
+    </style>
   </head>
   <body>
-    <main id="main-content" class="section">
-      <div class="container center">
-        <span class="eyebrow">404</span>
-        <h1>Diese Seite gibt es nicht</h1>
-        <p>Bitte gehe zurück zur Startseite.</p>
-        <a class="btn btn--primary" href="/">Zur Startseite</a>
-      </div>
+    <main>
+      <section class="panel" aria-labelledby="maintenance-title">
+        <div class="eyebrow">Wartungsmodus</div>
+        <h1 id="maintenance-title">Diese Website befindet sich aktuell im Wartungsmodus.</h1>
+        <p>Bitte schauen Sie spaeter noch einmal vorbei.</p>
+      </section>
     </main>
   </body>
 </html>

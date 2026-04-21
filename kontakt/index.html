@@ -3,159 +3,89 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kontakt & Bewerbung | Schaufenster</title>
-    <meta name="description" content="Bewerbungsformular für die kostenfreie Website-Unterstützung von Schaufenster in Lübeck.">
-    <meta name="theme-color" content="#fffaf4">
-    <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-colorful.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/main.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
-    <script defer src="/scripts/main.js"></script>
-    <script defer src="/scripts/config.js"></script>
-    <script defer src="/scripts/contact.js"></script>
+    <title>Schaufenster | Wartungsmodus</title>
+    <meta name="description" content="Die Website Schaufenster befindet sich aktuell im Wartungsmodus.">
+    <meta name="theme-color" content="#fbf6ef">
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #fbf6ef;
+        --surface: rgba(255, 255, 255, 0.78);
+        --border: rgba(116, 88, 62, 0.12);
+        --text: #231b16;
+        --muted: #6b5e53;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", "Segoe UI", Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(255, 181, 120, 0.26), transparent 28rem),
+          radial-gradient(circle at bottom left, rgba(83, 200, 175, 0.18), transparent 24rem),
+          var(--bg);
+        display: grid;
+        place-items: center;
+        padding: 1.5rem;
+      }
+
+      main {
+        width: min(100%, 42rem);
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        padding: clamp(2rem, 5vw, 3.25rem);
+        background: var(--surface);
+        backdrop-filter: blur(10px);
+        text-align: center;
+        box-shadow: 0 24px 60px rgba(29, 15, 4, 0.08);
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 1rem;
+        padding: 0.45rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.82);
+        color: #7a4a28;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2rem, 5vw, 3.35rem);
+        line-height: 1.08;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2.1vw, 1.12rem);
+        line-height: 1.7;
+      }
+    </style>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
-
-    <header class="site-header" data-menu-open="false">
-      <div class="container nav-wrap">
-        <a class="brand" href="/" aria-label="Schaufenster Startseite">
-          <img src="/assets/logos/logo-colorful.svg" alt="Schaufenster Logo farbig" width="44" height="44">
-          <span class="brand__text">Schaufenster <small>Lübeck</small></span>
-        </a>
-
-        <button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
-          <span aria-hidden="true"></span>
-        </button>
-
-        <nav class="nav" aria-label="Hauptnavigation">
-          <a href="/service/">Wie es funktioniert</a>
-          <a href="/bedingungen/">Bedingungen</a>
-          <a href="/ueber-mich/">Über mich</a>
-          <a href="/faq/">FAQ</a>
-          <a href="/kontakt/">Kontakt</a>
-        </nav>
-      </div>
-    </header>
-
-    <main id="main-content">
-      <section class="section section--hero">
-        <div class="container form-layout">
-          <section class="form-card reveal" aria-labelledby="kontakt-titel">
-            <span class="eyebrow">Bewerbung</span>
-            <h2 id="kontakt-titel">Jetzt für Ihr digitales Schaufenster bewerben</h2>
-            <p>Füllen Sie die Pflichtfelder aus. Ihre Angaben werden strukturiert zusammengefasst und an die konfigurierte Kontakt-E-Mail weitergeleitet.</p>
-            <noscript>
-              <p class="helper"><strong>Hinweis:</strong> Für das Senden des Formulars muss JavaScript aktiviert sein.</p>
-            </noscript>
-
-            <form id="contact-form">
-              <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" class="sr-only">
-              <textarea id="request-summary" name="request_summary" class="sr-only" aria-hidden="true"></textarea>
-
-              <div class="form-grid">
-                <div class="field">
-                  <label for="name">Name *</label>
-                  <input id="name" name="name" type="text" autocomplete="name" required>
-                </div>
-
-                <div class="field">
-                  <label for="email">E-Mail *</label>
-                  <input id="email" name="email" type="email" autocomplete="email" pattern="[A-Za-z0-9](?:[A-Za-z0-9._-]{0,62}[A-Za-z0-9])?@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,}" title="Bitte gib eine gültige E-Mail im Format name@domain.tld ein." required>
-                </div>
-
-                <div class="field">
-                  <label for="employees">Anzahl der Mitarbeiter *</label>
-                  <input id="employees" name="employees" type="number" min="1" step="1" required>
-                </div>
-
-                <div class="field">
-                  <label for="business_type">Art der Tätigkeit *</label>
-                  <input id="business_type" name="business_type" type="text" placeholder="z. B. Bäckerei, Atelier, Beratung" required>
-                </div>
-
-                <div class="field field--full">
-                  <label for="message">Nachricht *</label>
-                  <textarea id="message" name="message" placeholder="Beschreiben Sie kurz Ihr Unternehmen und was Sie auf der Website zeigen möchten." required></textarea>
-                </div>
-
-                <div class="field">
-                  <label for="annual_revenue">Jahresumsatz (optional)</label>
-                  <input id="annual_revenue" name="annual_revenue" type="text" placeholder="z. B. 80.000 €">
-                </div>
-
-                <div class="field">
-                  <label for="existing_site">Bestehende Website (optional)</label>
-                  <input id="existing_site" name="existing_site" type="url" autocomplete="url" placeholder="https://...">
-                </div>
-
-                <div id="social-links-wrap" class="field field--full">
-                  <label for="social_link_1">Social Media Link (optional)</label>
-                  <input id="social_link_1" name="social_links[]" type="url" placeholder="https://instagram.com/..." autocomplete="url">
-                </div>
-
-                <div class="field field--full">
-                  <button id="add-social-link" class="btn btn--ghost" type="button">Weiteren Social Link hinzufügen</button>
-                </div>
-
-                <div class="field field--full checkbox">
-                  <input id="consent" name="consent" type="checkbox" required>
-                  <label for="consent">Ich stimme zu, dass meine Angaben zur Bearbeitung der Anfrage gespeichert und verarbeitet werden. Details stehen auf der Seite <a href="/datenschutz/">Datenschutz</a>. *</label>
-                </div>
-
-                <div class="field field--full helper">
-                  Pflichtfelder sind mit * markiert.
-                </div>
-
-                <div class="field field--full form-actions">
-                  <button class="btn btn--primary" type="submit">Anfrage senden</button>
-                  <p class="form-status" id="form-status" aria-live="polite"></p>
-                </div>
-              </div>
-            </form>
-
-          </section>
-
-          <aside class="form-card reveal reveal-delay-1">
-            <h2>Was nach der Anfrage passiert</h2>
-            <ol class="timeline">
-              <li><strong>1. Eingangsbestätigung</strong> Sie erhalten eine kurze Rückmeldung.</li>
-              <li><strong>2. Prüfung der Voraussetzungen</strong> Wir prüfen, ob die Teilnahmebedingungen erfüllt sind.</li>
-              <li><strong>3. Erstgespräch</strong> Wir klären Inhalte, Ziele und nächsten Schritte.</li>
-            </ol>
-
-            <div class="btn-row">
-              <a class="btn btn--secondary" href="/bedingungen/">Teilnahmebedingungen</a>
-              <a class="btn btn--ghost" href="/faq/">FAQ öffnen</a>
-            </div>
-          </aside>
-        </div>
+    <main>
+      <section class="panel" aria-labelledby="maintenance-title">
+        <div class="eyebrow">Wartungsmodus</div>
+        <h1 id="maintenance-title">Diese Website befindet sich aktuell im Wartungsmodus.</h1>
+        <p>Bitte schauen Sie spaeter noch einmal vorbei.</p>
       </section>
     </main>
-
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <div>
-          <a class="brand" href="/" aria-label="Schaufenster Startseite">
-            <img src="/assets/logos/logo-black.svg" alt="Schaufenster Logo schwarz" width="40" height="40" loading="lazy">
-            <span class="brand__text">Schaufenster <small>Lübeck</small></span>
-          </a>
-          <p class="small">Schaufenster ist eine kostenfreie Initiative, um lokale Unternehmen in Lübeck digital sichtbar zu machen.</p>
-          <p class="small">© <span data-year></span> Schaufenster.</p>
-        </div>
-        <div class="footer-links" aria-label="Footer Navigation">
-          <a href="/service/">Wie es funktioniert</a>
-          <a href="/bedingungen/">Bedingungen</a>
-          <a href="/ueber-mich/">Über mich</a>
-          <a href="/faq/">FAQ</a>
-          <a href="/kontakt/">Kontakt</a>
-          <a href="/impressum/">Impressum</a>
-          <a href="/datenschutz/">Datenschutz</a>
-        </div>
-      </div>
-    </footer>
   </body>
 </html>

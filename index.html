@@ -3,217 +3,89 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Schaufenster | Kostenfreie Websites für lokale Unternehmen in Lübeck</title>
-    <meta name="description" content="Schaufenster hilft kleinen Unternehmen, Manufakturen und Einzelunternehmern in Lübeck mit einer kostenlosen, professionellen Website für mehr Sichtbarkeit.">
-    <meta name="theme-color" content="#fffaf4">
-    <meta property="og:title" content="Schaufenster | Kostenfreie Website-Unterstützung in Lübeck">
-    <meta property="og:description" content="Kostenfreie Unterstützung beim Aufbau einer professionellen Website für kleine Unternehmen in Lübeck.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://schaufenster.design/assets/logos/logo-colorful.svg">
-    <meta property="og:image:alt" content="Schaufenster Logo">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://schaufenster.design/assets/logos/logo-colorful.svg">
-    <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://schaufenster.design/">
-    <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-colorful.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/main.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
-    <script defer src="/scripts/main.js"></script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Schaufenster",
-        "description": "Kostenfreie Erstellung neuer Websites für kleine Unternehmen in Lübeck.",
-        "areaServed": {
-          "@type": "City",
-          "name": "Lübeck"
-        },
-        "serviceType": "Webdesign für lokale Unternehmen",
-        "url": "https://schaufenster.design/",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "EUR",
-          "description": "Die Erstellung der Website ist kostenfrei. Domain und Hosting trägt das Unternehmen."
-        }
+    <title>Schaufenster | Wartungsmodus</title>
+    <meta name="description" content="Die Website Schaufenster befindet sich aktuell im Wartungsmodus.">
+    <meta name="theme-color" content="#fbf6ef">
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #fbf6ef;
+        --surface: rgba(255, 255, 255, 0.78);
+        --border: rgba(116, 88, 62, 0.12);
+        --text: #231b16;
+        --muted: #6b5e53;
       }
-    </script>
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", "Segoe UI", Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(255, 181, 120, 0.26), transparent 28rem),
+          radial-gradient(circle at bottom left, rgba(83, 200, 175, 0.18), transparent 24rem),
+          var(--bg);
+        display: grid;
+        place-items: center;
+        padding: 1.5rem;
+      }
+
+      main {
+        width: min(100%, 42rem);
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        padding: clamp(2rem, 5vw, 3.25rem);
+        background: var(--surface);
+        backdrop-filter: blur(10px);
+        text-align: center;
+        box-shadow: 0 24px 60px rgba(29, 15, 4, 0.08);
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 1rem;
+        padding: 0.45rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.82);
+        color: #7a4a28;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2rem, 5vw, 3.35rem);
+        line-height: 1.08;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2.1vw, 1.12rem);
+        line-height: 1.7;
+      }
+    </style>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
-
-    <header class="site-header" data-menu-open="false">
-      <div class="container nav-wrap">
-        <a class="brand" href="/" aria-label="Schaufenster Startseite">
-          <img src="/assets/logos/logo-colorful.svg" alt="Schaufenster Logo farbig" width="44" height="44">
-          <span class="brand__text">
-            Schaufenster
-            <small>Lübeck</small>
-          </span>
-        </a>
-
-        <button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
-          <span aria-hidden="true"></span>
-        </button>
-
-        <nav class="nav" aria-label="Hauptnavigation">
-          <a href="/service/">Wie es funktioniert</a>
-          <a href="/bedingungen/">Bedingungen</a>
-          <a href="/ueber-mich/">Über mich</a>
-          <a href="/faq/">FAQ</a>
-          <a href="/kontakt/">Kontakt</a>
-        </nav>
-      </div>
-    </header>
-
-    <main id="main-content">
-      <section class="section section--hero section--hero-home">
-        <div class="container hero">
-          <div class="reveal">
-            <span class="eyebrow">Kostenfrei für Lübeck</span>
-            <h1>Ihr Geschäft online sichtbar machen. Klar, professionell, menschlich.</h1>
-            <p class="lead">Schaufenster unterstützt kleine Unternehmen, lokale Manufakturen und Einzelunternehmer in Lübeck mit einer neuen, professionellen Website. Ziel ist mehr Sichtbarkeit, mehr Vertrauen und ein starker erster Eindruck online.</p>
-            <div class="btn-row">
-              <a class="btn btn--primary" href="/kontakt/">Jetzt bewerben</a>
-              <a class="btn btn--secondary" href="/service/">So funktioniert&apos;s</a>
-            </div>
-          </div>
-
-          <aside class="hero__visual reveal reveal-delay-1" aria-label="Serviceüberblick">
-            <div class="hero__card">
-              <h3>Ihr digitales Schaufenster</h3>
-              <p>Wir bauen für Sie eine moderne Website, auf der Sie Produkte oder Dienstleistungen verständlich und professionell präsentieren können.</p>
-            </div>
-            <div class="hero__card">
-              <h3>Fokus auf Sichtbarkeit</h3>
-              <ul class="hero__stats">
-                <li>Mobile-optimiertes Design</li>
-                <li>Saubere SEO-Basis</li>
-                <li>Klare Kontaktwege und Navigation für Interessenten</li>
-              </ul>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section section--tight">
-        <div class="container">
-          <div class="grid-3">
-            <article class="card reveal">
-              <div class="icon-badge" aria-hidden="true">01</div>
-              <h3>Motivation</h3>
-              <p>Kleinere lokale Manufakturen haben oft weder Zeit noch Ressourcen, eine digitale Präsenz aufzubauen. Dadurch bleiben ihre Angebote häufig unsichtbar und potenzielle Kunden wenden sich den ohnehin etablierten Anbietern zu.</p>
-            </article>
-            <article class="card reveal reveal-delay-1">
-              <div class="icon-badge" aria-hidden="true">02</div>
-              <h3>Mission</h3>
-              <p>Wir möchten lokalen Unternehmen einen fairen Zugang zu professioneller Online-Präsenz ermöglichen, unabhängig vom Budget.</p>
-            </article>
-            <article class="card reveal reveal-delay-2">
-              <div class="icon-badge" aria-hidden="true">03</div>
-              <h3>Ziel</h3>
-              <p>Mehr digitale Auffindbarkeit, zeitgemäße Repräsentation und eine bessere Chance, neue Kundinnen und Kunden zu erreichen.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="statistik">
-        <div class="container">
-          <div class="grid-2">
-            <div class="reveal">
-              <span class="eyebrow">Warum eine Website wichtig ist</span>
-              <h2>Sichtbarkeit entscheidet über Erstkontakte</h2>
-              <p>Entscheidungen entstehen heute oft direkt am Smartphone. Jede vierte Suche kann dabei zur realen Laufkundschaft führen.</p>
-              <p>Zusätzlich beeinflussen Bewertungen messbar das Kaufverhalten. Eine klare Website schafft dabei Vertrauen, ergänzt Bewertungen und hilft Interessierten, sich für Ihr Angebot zu entscheiden.</p>
-            </div>
-            <div class="stat-panel reveal reveal-delay-1" role="img" aria-label="Kennzahlen zu lokalen Suchen auf dem Smartphone und zum Einfluss von Bewertungen auf Kaufentscheidungen">
-              <h3>Digitale Sichtbarkeit im Überblick</h3>
-              <div class="stat-chart">
-                <div class="stat-item">
-                  <div class="stat-label"><span>Suchen mobil lokal und besuchen innerhalb eines Tages ein passendes Geschäft</span><span>76%</span></div>
-                  <div class="bar-track"><div class="bar-fill" data-fill="76"></div></div>
-                </div>
-                <div class="stat-item">
-                  <div class="stat-label"><span>Lokale mobile Suchen, die direkt zu einem Kauf führen</span><span>28%</span></div>
-                  <div class="bar-track"><div class="bar-fill" data-fill="28"></div></div>
-                </div>
-                <div class="stat-item">
-                  <div class="stat-label"><span>Verbraucher, die nach dem Lesen von Bewertungen schon einmal gekauft haben</span><span>93%</span></div>
-                  <div class="bar-track"><div class="bar-fill" data-fill="93"></div></div>
-                </div>
-              </div>
-              <ul class="sources sources--inline small">
-                <li><a href="https://www.thinkwithgoogle.com/_qs/documents/620/mobile-search-trends-consumers-to-stores.pdf" target="_blank" rel="noopener noreferrer">Think with Google: Mobile Search Trends – Consumers to Stores (76% / 28%)</a></li>
-                <li><a href="https://www.brightlocal.com/research/local-consumer-review-survey/" target="_blank" rel="noopener noreferrer">BrightLocal: Local Consumer Review Survey (93%)</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--tight">
-        <div class="container grid-2">
-          <article class="card reveal">
-            <h2>Für wen ist Schaufenster gedacht?</h2>
-            <ul class="checklist checklist--spaced">
-              <li>Kleine Betriebe und Manufakturen mit Sitz in Lübeck</li>
-              <li>Einzelunternehmer, die professionell online sichtbar werden wollen</li>
-              <li>Unternehmen ohne bestehende oder mit nicht mehr aktueller Website</li>
-            </ul>
-          </article>
-          <article class="card card--stack reveal reveal-delay-1">
-            <h2>Was Sie bekommen</h2>
-            <ul class="checklist checklist--spaced">
-              <li>Eine komplett neue, moderne Website (Desktop und Mobil)</li>
-              <li>Übersicht der Produkte oder Dienstleistungen</li>
-              <li>Klare Kontaktwege und Navigation für potenzielle Kundschaft</li>
-              <li>SEO-Grundlagen, damit Ihre Website besser gefunden wird</li>
-            </ul>
-            <div class="btn-row btn-row--end">
-              <a class="btn btn--primary" href="/kontakt/">Jetzt bewerben</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container cta-box reveal">
-          <h2>Ihr Unternehmen soll online sichtbar werden?</h2>
-          <p>Wenn Sie aus Lübeck kommen und Ihr Unternehmen professionell online darstellen möchten, senden Sie gerne eine Anfrage. Wir melden uns mit den nächsten Schritten.</p>
-          <div class="btn-row">
-            <a class="btn btn--primary" href="/kontakt/">Anfrage senden</a>
-            <a class="btn btn--ghost" href="/bedingungen/">Teilnahmebedingungen lesen</a>
-          </div>
-        </div>
+    <main>
+      <section class="panel" aria-labelledby="maintenance-title">
+        <div class="eyebrow">Wartungsmodus</div>
+        <h1 id="maintenance-title">Diese Website befindet sich aktuell im Wartungsmodus.</h1>
+        <p>Bitte schauen Sie spaeter noch einmal vorbei.</p>
       </section>
     </main>
-
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <div>
-          <a class="brand" href="/" aria-label="Schaufenster Startseite">
-            <img src="/assets/logos/logo-black.svg" alt="Schaufenster Logo schwarz" width="40" height="40" loading="lazy">
-            <span class="brand__text">Schaufenster <small>Lübeck</small></span>
-          </a>
-          <p class="small">Schaufenster ist eine kostenfreie Initiative, um lokale Unternehmen in Lübeck digital sichtbar zu machen.</p>
-          <p class="small">© <span data-year></span> Schaufenster.</p>
-        </div>
-        <div class="footer-links" aria-label="Footer Navigation">
-          <a href="/service/">Wie es funktioniert</a>
-          <a href="/bedingungen/">Bedingungen</a>
-          <a href="/ueber-mich/">Über mich</a>
-          <a href="/faq/">FAQ</a>
-          <a href="/kontakt/">Kontakt</a>
-          <a href="/impressum/">Impressum</a>
-          <a href="/datenschutz/">Datenschutz</a>
-        </div>
-      </div>
-    </footer>
   </body>
 </html>
